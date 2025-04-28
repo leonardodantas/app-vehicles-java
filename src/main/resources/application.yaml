@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: "mongodb://leonardo:123456@localhost:27017/vehicles?authSource=admin&serverSelectionTimeoutMS=1000&connectTimeoutMS=1000"
+server:
+  port: 8080
