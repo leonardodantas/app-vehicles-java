@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record VehicleCreateRequest(
+public record VehicleRequest(
         @MarkValid
         String mark,
         @Min(value = 1886, message = "{year.min}")
