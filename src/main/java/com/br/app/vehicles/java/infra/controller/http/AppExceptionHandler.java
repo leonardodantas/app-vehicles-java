@@ -1,10 +1,10 @@
 package com.br.app.vehicles.java.infra.controller.http;
 
+import com.br.app.vehicles.java.app.exceptions.ResourceNotFoundException;
 import com.br.app.vehicles.java.infra.controller.jsons.responses.ErrorResponse;
 import com.br.app.vehicles.java.infra.exceptions.VehicleNotSaveException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -26,6 +26,11 @@ public class AppExceptionHandler {
     public ResponseEntity<?> handleVehicleNotSaveException(final VehicleNotSaveException ex, final WebRequest request) {
         final ErrorResponse response = new ErrorResponse(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), ex.getMessage(), request.getDescription(false));
         return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleResourceNotFoundException(final ResourceNotFoundException ex, final WebRequest request) {
+        return ResponseEntity.notFound().build();
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
