@@ -26,7 +26,7 @@ public class VehicleDocument {
     @Field("descricao")
     private String description;
     @Field("vendido")
-    private String sold;
+    private Boolean sold;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
