@@ -54,7 +54,7 @@ Cria um novo veículo.
 
 #### Parâmetros:
 
-- `available`: (opcional) `true` ou `false`
+- `available`: (opcional) `s` ou `n`
 - `decade`: (opcional) década do veículo, ex: 1990
 - `mark`: (opcional) marca do veículo
 - `page`: default `0`
@@ -71,19 +71,6 @@ Lista paginada de `VehicleResponse`
 **GET /v1/vehicles/last-week**
 
 Retorna veículos cadastrados nos últimos 7 dias.
-
-#### Parâmetros:
-
-- `page`: default `0`
-- `size`: default `20`
-
----
-
-### ❌ Buscar veículos não vendidos
-
-**GET /v1/vehicles/not/sold**
-
-Retorna veículos cujo campo `sold` está como `false`.
 
 #### Parâmetros:
 
@@ -232,12 +219,6 @@ Content-Type: application/json
   "description": "Compacto, econômico",
   "sold": false
 }
-```
-
-### Buscar veículos não vendidos
-
-```
-GET http://localhost:8080/v1/vehicles/not/sold?page=0&size=10
 ```
 
 ### Buscar veículos com filtro por década e marca
