@@ -160,44 +160,6 @@ http://localhost:8080/swagger-ui.html
 
 ---
 
-## 🐳 Docker MongoDB
-
-Exemplo no `docker-compose.yml`:
-
-```yaml
-services:
-  mongo:
-    image: mongo:4.4
-    ports:
-      - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=leonardo
-      - MONGO_INITDB_ROOT_PASSWORD=123456
-  mongo-express:
-    image: mongo-express
-    ports:
-      - "8081:8081"
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: leonardo
-      ME_CONFIG_MONGODB_ADMINPASSWORD: 123456
-      ME_CONFIG_MONGODB_SERVER: mongo
-```
-
----
-
-## 📦 MongoDB URI
-
-Exemplo:
-
-```yaml
-spring:
-  data:
-    mongodb:
-      uri: mongodb://leonardo:123456@localhost:27017/vehicles?authSource=admin
-```
-
----
-
 ## 📬 Testes via Postman
 
 ### 📥 Importação
