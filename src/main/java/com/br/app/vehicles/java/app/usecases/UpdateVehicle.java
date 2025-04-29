@@ -13,6 +13,9 @@ public class UpdateVehicle {
     private final IVehicleRepository vehicleRepository;
 
     public Vehicle update(final Vehicle vehicle) {
+        vehicleRepository.findById(vehicle.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found"));
+
         return vehicleRepository.save(vehicle);
     }
 

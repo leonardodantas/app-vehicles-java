@@ -1,11 +1,15 @@
 package com.br.app.vehicles.java.domain;
 
 import com.br.app.vehicles.java.infra.controller.annotations.MarkEnum;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Search {
 
     private String available;

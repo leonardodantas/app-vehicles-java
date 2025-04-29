@@ -53,7 +53,7 @@ public class VehicleRepository implements IVehicleRepository {
     }
 
     @Override
-    public Page<Vehicle> findVehiclesAvailable(final int page, final int size, final Search search) {
+    public Page<Vehicle> findVehicles(final int page, final int size, final Search search) {
 
         final List<Criteria> criteria = getCriteria(search);
         final Query query = getQuery(criteria);
@@ -63,7 +63,7 @@ public class VehicleRepository implements IVehicleRepository {
 
         long total = mongoTemplate.count(query, Vehicle.class);
 
-        List<Vehicle> vehicle = mongoTemplate.find(query, VehicleDocument.class)
+        final List<Vehicle> vehicle = mongoTemplate.find(query, VehicleDocument.class)
                 .stream()
                 .map(vehicleDocumentMapper::toDomain)
                 .toList();

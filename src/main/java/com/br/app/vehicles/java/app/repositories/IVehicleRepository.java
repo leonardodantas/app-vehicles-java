@@ -13,7 +13,7 @@ public interface IVehicleRepository {
 
     void delete(final String id);
 
-    Page<Vehicle> findVehiclesAvailable(final int page, final int size, final Search search);
+    Page<Vehicle> findVehicles(final int page, final int size, final Search search);
 
     Page<Vehicle> findVehiclesFromLastWeek(final int page, final int size);
 }
