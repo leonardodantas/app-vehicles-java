@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
@@ -61,7 +62,7 @@ public class VehicleRepository implements IVehicleRepository {
         final PageRequest pageRequest = PageRequest.of(page, size);
         query.with(pageRequest);
 
-        long total = mongoTemplate.count(query, Vehicle.class);
+        long total = mongoTemplate.count(query, VehicleDocument.class);
 
         final List<Vehicle> vehicle = mongoTemplate.find(query, VehicleDocument.class)
                 .stream()
@@ -92,15 +93,15 @@ public class VehicleRepository implements IVehicleRepository {
         final List<Criteria> criteria = new ArrayList<>();
 
         if (Objects.nonNull(search.getDecade())) {
-            criteria.add(Criteria.where("decade").is(search.getDecade()));
+            criteria.add(Criteria.where("ano").gte(search.getDecade()).lt(search.getDecade() + 10));
         }
 
         if (Objects.nonNull(search.getMark())) {
-            criteria.add(Criteria.where("mark").is(search.getMark()));
+            criteria.add(Criteria.where("marca").regex("^" + Pattern.quote(search.getMark()) + "$", "i"));
         }
 
         if (Objects.nonNull(search.getAvailable())) {
-            criteria.add(Criteria.where("available").is(search.getAvailable()));
+            criteria.add(Criteria.where("vendido").is(search.getAvailable()));
         }
 
         return criteria;

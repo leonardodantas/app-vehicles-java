@@ -16,9 +16,12 @@ public class Search {
     private Integer decade;
     private String mark;
 
-    public String getAvailable() {
-        if ("s".equalsIgnoreCase(available) || "n".equalsIgnoreCase(available)) {
-            return available;
+    public Boolean getAvailable() {
+        if ("s".equalsIgnoreCase(available)) {
+            return Boolean.TRUE;
+        }
+        if("n".equalsIgnoreCase(available)) {
+            return Boolean.FALSE;
         }
         return null;
     }

@@ -13,10 +13,12 @@ public class UpdateVehicle {
     private final IVehicleRepository vehicleRepository;
 
     public Vehicle update(final Vehicle vehicle) {
-        vehicleRepository.findById(vehicle.getId())
+        final Vehicle vehicleExist = vehicleRepository.findById(vehicle.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Vehicle not found"));
 
-        return vehicleRepository.save(vehicle);
+        final Vehicle vehicleUpdate = vehicle.of(vehicleExist.getCreatedAt(), vehicleExist.getUpdatedAt());
+
+        return vehicleRepository.save(vehicleUpdate);
     }
 
     public Vehicle updateDescriptionAndSold(final Vehicle vehicle) {

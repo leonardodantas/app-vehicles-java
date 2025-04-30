@@ -11,24 +11,25 @@ import jakarta.validation.constraints.NotNull;
 public record VehicleRequest(
 
         @Schema(description = "Marca do veículo", example = "Toyota")
-        @MarkValid
+        @MarkValid(message = "{mark.valid}")
         String mark,
 
         @Schema(description = "Ano de fabricação (entre 1886 e 2100)", example = "2000")
         @Min(value = 1886, message = "{year.min}")
         @Max(value = 2100, message = "{year.max}")
+        @NotNull(message = "{year.not.null}")
         Integer year,
 
         @Schema(description = "Modelo do veículo", example = "Corolla")
-        @NotBlank
+        @NotBlank(message = "{model.not.blank}")
         String model,
 
         @Schema(description = "Descrição do veículo", example = "Carro em ótimo estado")
-        @NotBlank
+        @NotBlank(message = "{description.not.blank}")
         String description,
 
         @Schema(description = "Indica se o veículo foi vendido", example = "false")
-        @NotNull
+        @NotNull(message = "{sold.not.null}")
         Boolean sold
 ) {}
 

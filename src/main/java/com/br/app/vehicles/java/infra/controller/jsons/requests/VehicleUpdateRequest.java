@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record VehicleUpdateRequest(
-        @NotBlank
+        @NotBlank(message = "{description.not.blank}")
         String description,
-        @NotNull
+        @NotNull(message = "{sold.not.null}")
         Boolean sold
 ) {
 }
