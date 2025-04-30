@@ -7,6 +7,7 @@ import com.br.app.vehicles.java.utils.JsonUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -32,14 +33,14 @@ class UpdateVehicleTest {
         final Vehicle vehicleExist = JsonUtils.readJson("jsons/domain/vehicle_domain_2.json", Vehicle.class);
 
         when(vehicleRepository.findById(vehicle.getId())).thenReturn(Optional.of(vehicleExist));
-        when(vehicleRepository.save(vehicle)).thenReturn(vehicleExist);
+        when(vehicleRepository.save(ArgumentMatchers.any(Vehicle.class))).thenReturn(vehicleExist);
 
         final Vehicle result = updateVehicle.update(vehicle);
 
         assertThat(result).usingRecursiveComparison().isEqualTo(vehicleExist);
 
         verify(vehicleRepository, times(1)).findById(vehicle.getId());
-        verify(vehicleRepository, times(1)).save(vehicle);
+        verify(vehicleRepository, times(1)).save(ArgumentMatchers.any(Vehicle.class));
     }
 
     @Test

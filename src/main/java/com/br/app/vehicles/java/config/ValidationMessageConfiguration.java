@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
-public class ValidationMessageConfig {
+public class ValidationMessageConfiguration {
 
     @Bean
     public MessageSource messageSource() {
